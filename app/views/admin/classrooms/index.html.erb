@@ -36,6 +36,7 @@
               <td><%= admin_classroom.semester %></td>
               <td><%= link_to 'Edit', edit_admin_classroom_path(admin_classroom), class: "btn btn-default" %></td>
               <td><%= link_to 'Delete', admin_classroom_path(admin_classroom), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %></td>
+              <td><%= link_to 'Ver aulas', admin_classroom_lessons_path(admin_classroom.id), class: "btn btn-default" %></td>
             </tr>
             <% end %>
           </tbody>

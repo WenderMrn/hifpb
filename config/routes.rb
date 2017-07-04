@@ -9,8 +9,11 @@ Rails.application.routes.draw do
 
     resources :semesters, path: 'semestres'
     resources :laboratories, path: 'laboratorios'
-    resources :classrooms, path: 'turmas'
     resources :schoolrooms, path: 'salas'
+
+    resources :classrooms, path:'turmas' do
+      resources :lessons, only: [:index, :new, :create, :destroy], path: 'aulas'
+    end
 
 
     resources :campus do

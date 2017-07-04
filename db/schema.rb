@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170619140253) do
+ActiveRecord::Schema.define(version: 20170702213818) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,7 +35,7 @@ ActiveRecord::Schema.define(version: 20170619140253) do
 
   create_table "classrooms", force: :cascade do |t|
     t.string "name"
-    t.string "code"
+    t.integer "code"
     t.bigint "course_id"
     t.bigint "course_subject_id"
     t.bigint "teacher_id"
@@ -82,6 +82,20 @@ ActiveRecord::Schema.define(version: 20170619140253) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "lessons", force: :cascade do |t|
+    t.string "day"
+    t.bigint "laboratory_id"
+    t.bigint "schoolroom_id"
+    t.bigint "classroom_id"
+    t.bigint "campus_schedule_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["campus_schedule_id"], name: "index_lessons_on_campus_schedule_id"
+    t.index ["classroom_id"], name: "index_lessons_on_classroom_id"
+    t.index ["laboratory_id"], name: "index_lessons_on_laboratory_id"
+    t.index ["schoolroom_id"], name: "index_lessons_on_schoolroom_id"
+  end
+
   create_table "schoolrooms", force: :cascade do |t|
     t.integer "maximum_capacity"
     t.integer "amount_resources"
@@ -115,4 +129,8 @@ ActiveRecord::Schema.define(version: 20170619140253) do
   add_foreign_key "classrooms", "courses"
   add_foreign_key "course_subjects", "courses"
   add_foreign_key "courses", "campus"
+  add_foreign_key "lessons", "campus_schedules"
+  add_foreign_key "lessons", "classrooms"
+  add_foreign_key "lessons", "laboratories"
+  add_foreign_key "lessons", "schoolrooms"
 end
