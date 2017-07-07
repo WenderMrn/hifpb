@@ -17,7 +17,7 @@
       </div>
       <div class="panel-body">
 
-        <table data-toggle="table" id="table-import" data-search="false" data-pagination="false">
+        <table data-toggle="table" id="table-import">
           <thead>
               <th>Horário</th>
               <th>Segunda</th>
@@ -26,11 +26,43 @@
               <th>Quinta</th>
               <th>Sexta</th>
 
+
           </thead>
 
           <tbody>
 
+            <% @lessons.each do |aula| %>
+            <tr>
+            <td><%= aula.campus_schedule.start.strftime("%H:%M") %> - <%= aula.campus_schedule.end.strftime("%H:%M") %></td>
+            <td><%= if (aula.day == 'Segunda')
+                      link_to(aula.laboratory.name,edit_admin_classroom_lesson_path(aula.id))
+                    end
+                %></td>
+                <td><%= if (aula.day == 'Terça')
+                            link_to(aula.laboratory.name,edit_admin_classroom_lesson_path(aula.id))
+                        end
+                    %></td>
+                    <td><%= if (aula.day == 'Quarta')
+                                link_to(aula.laboratory.name)
+                            end
+                        %></td>
+                        <td><%= if (aula.day == 'Quinta')
+                                    link_to(aula.laboratory.name)
+                                end
+                            %></td>
+                            <td><%= if (aula.day == 'Sexta')
+                                        link_to(aula.laboratory.name)
+                                    end
+                                %></td>
+
+            </tr>
+            <% end %>
+          </tbody>
+
         </table>
+
+
+
 
       </div>
     </div>

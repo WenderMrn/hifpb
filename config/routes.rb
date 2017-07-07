@@ -12,7 +12,7 @@ Rails.application.routes.draw do
     resources :schoolrooms, path: 'salas'
 
     resources :classrooms, path:'turmas' do
-      resources :lessons, only: [:index, :new, :create, :destroy], path: 'aulas'
+      resources :lessons,  path: 'aulas'
     end
 
 
