@@ -31,32 +31,85 @@
 
           <tbody>
 
-            <% @lessons.each do |aula| %>
+          <% @lessons.each do |lesson| %>
             <tr>
-            <td><%= aula.campus_schedule.start.strftime("%H:%M") %> - <%= aula.campus_schedule.end.strftime("%H:%M") %></td>
-            <td><%= if (aula.day == 'Segunda')
-                      link_to(aula.laboratory.name,edit_admin_classroom_lesson_path(aula.id))
-                    end
-                %></td>
-                <td><%= if (aula.day == 'Terça')
-                            link_to(aula.laboratory.name,edit_admin_classroom_lesson_path(aula.id))
-                        end
-                    %></td>
-                    <td><%= if (aula.day == 'Quarta')
-                                link_to(aula.laboratory.name)
-                            end
-                        %></td>
-                        <td><%= if (aula.day == 'Quinta')
-                                    link_to(aula.laboratory.name)
-                                end
-                            %></td>
-                            <td><%= if (aula.day == 'Sexta')
-                                        link_to(aula.laboratory.name)
-                                    end
-                                %></td>
+              <td><%= lesson.campus_schedule.start.strftime("%H:%M") %> - <%= lesson.campus_schedule.end.strftime("%H:%M") %></td>
+                <td>
+              <% if (lesson.day == 'Segunda')
+                if (lesson.laboratory_id == nil) %>
+                <%= link_to(lesson.schoolroom.name, edit_admin_classroom_lesson_path(@classroom, lesson)) %>
+              <% end %>
+              <% if (lesson.schoolroom_id == nil) %>
+                <%= link_to(lesson.laboratory.name, edit_admin_classroom_lesson_path(@classroom, lesson)) %>
+              <% end %>
+              <% if (lesson.schoolroom_id != nil) && (lesson.laboratory_id != nil) %>
+                <%= link_to(lesson.schoolroom.name, edit_admin_classroom_lesson_path(@classroom, lesson)) %> -
+                <%= link_to(lesson.laboratory.name, edit_admin_classroom_lesson_path(@classroom, lesson)) %>
+              <% end %>
+              <% end %>
+            </td>
+                <td>
+              <% if (lesson.day == 'Terça')
+                if (lesson.laboratory_id == nil) %>
+                <%= link_to(lesson.schoolroom.name, edit_admin_classroom_lesson_path(@classroom, lesson)) %>
+              <% end %>
+              <% if (lesson.schoolroom_id == nil) %>
+                <%= link_to(lesson.laboratory.name, edit_admin_classroom_lesson_path(@classroom, lesson)) %>
+              <% end %>
+              <% if (lesson.schoolroom_id != nil) && (lesson.laboratory_id != nil) %>
+                <%= link_to(lesson.schoolroom.name, edit_admin_classroom_lesson_path(@classroom, lesson)) %> -
+                <%= link_to(lesson.laboratory.name, edit_admin_classroom_lesson_path(@classroom, lesson)) %>
+              <% end %>
+              <% end %>
+            </td>
+                <td>
+              <% if (lesson.day == 'Quarta')
+                if (lesson.laboratory_id == nil) %>
+                <%= link_to(lesson.schoolroom.name, edit_admin_classroom_lesson_path(@classroom, lesson)) %>
+              <% end %>
+              <% if (lesson.schoolroom_id == nil) %>
+                <%= link_to(lesson.laboratory.name, edit_admin_classroom_lesson_path(@classroom, lesson)) %>
+              <% end %>
+              <% if (lesson.schoolroom_id != nil) && (lesson.laboratory_id != nil) %>
+                <%= link_to(lesson.schoolroom.name, edit_admin_classroom_lesson_path(@classroom, lesson)) %> -
+                <%= link_to(lesson.laboratory.name, edit_admin_classroom_lesson_path(@classroom, lesson)) %>
+              <% end %>
+              <% end %>
+            </td>
+                <td>
+              <% if (lesson.day == 'Quinta')
+                if (lesson.laboratory_id == nil) %>
+                <%= link_to(lesson.schoolroom.name, edit_admin_classroom_lesson_path(@classroom, lesson)) %>
+              <% end %>
+              <% if (lesson.schoolroom_id == nil) %>
+                <%= link_to(lesson.laboratory.name, edit_admin_classroom_lesson_path(@classroom, lesson)) %>
+              <% end %>
+              <% if (lesson.schoolroom_id != nil) && (lesson.laboratory_id != nil) %>
+                <%= link_to(lesson.schoolroom.name, edit_admin_classroom_lesson_path(@classroom, lesson)) %> -
+                <%= link_to(lesson.laboratory.name, edit_admin_classroom_lesson_path(@classroom, lesson)) %>
+              <% end %>
+              <% end %>
+            </td>
+                <td>
+              <% if (lesson.day == 'Sexta')
+                if (lesson.laboratory_id == nil) %>
+                <%= link_to(lesson.schoolroom.name, edit_admin_classroom_lesson_path(@classroom, lesson)) %>
+              <% end %>
+              <% if (lesson.schoolroom_id == nil) %>
+                <%= link_to(lesson.laboratory.name, edit_admin_classroom_lesson_path(@classroom, lesson)) %>
+              <% end %>
+              <% if (lesson.schoolroom_id != nil) && (lesson.laboratory_id != nil) %>
+                <%= link_to(lesson.schoolroom.name, edit_admin_classroom_lesson_path(@classroom, lesson)) %> -
+                <%= link_to(lesson.laboratory.name, edit_admin_classroom_lesson_path(@classroom, lesson)) %>
+              <% end %>
+              <% end %>
+            </td>
 
             </tr>
             <% end %>
+
+
+
           </tbody>
 
         </table>
