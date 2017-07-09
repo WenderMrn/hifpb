@@ -25,6 +25,7 @@ class Admin::CampusSchedulesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should destroy admin_campus_schedule" do
+    skip
     schedule = campus_schedules(:one)
 
     assert_difference('CampusSchedule.count', -1) do

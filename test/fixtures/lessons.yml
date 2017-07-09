@@ -1,0 +1,13 @@
+one:
+  day: Segunda
+  laboratory: one
+  schoolroom: one
+  classroom: one
+  campus_schedule: one
+
+two:
+  day: Quarta
+  laboratory: two
+  schoolroom: two
+  classroom: one
+  campus_schedule: two
