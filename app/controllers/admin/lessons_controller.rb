@@ -2,26 +2,24 @@ class Admin::LessonsController < Admin::AdminController
 before_action :set_lesson, only: [:edit, :update, :destroy]
 
   # GET /lessons
-  # GET /lessons.json
   def index
     @classroom = Classroom.find(params[:classroom_id])
-    @lessons = Lesson.where(classroom: @classroom)
-    @campus_schedules = CampusSchedule.all
-
+    @monday = Lesson.where(classroom: @classroom, day: 'Segunda')
+    @tuesday = Lesson.where(classroom: @classroom, day: 'Terça')
+    @wednesday = Lesson.where(classroom: @classroom, day: 'Quarta')
+    @thursday = Lesson.where(classroom: @classroom, day: 'Quinta')
+    @friday = Lesson.where(classroom: @classroom, day: 'Sexta')
+    @campus_schedules = CampusSchedule.where(campus: @classroom.course.campus)
   end
-
-
 
   # GET /lessons/new
   def new
     @classroom = Classroom.find(params[:classroom_id])
     @lesson = Lesson.new(classroom: @classroom)
-
   end
 
   # GET /lessons/1/edit
   def edit
-
     @lesson = Lesson.find(params[:id])
   end
 

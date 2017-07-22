@@ -1,5 +1,3 @@
-
-
 <h1>Aulas da turma: <%= @classroom.name %></h1>
 <h4>Clique nas aulas para editar</h4>
 <div class="row">
@@ -19,104 +17,73 @@
 
         <table data-toggle="table" id="table-import">
           <thead>
-              <th>Horário</th>
-              <th>Segunda</th>
-              <th>Terça</th>
-              <th>Quarta</th>
-              <th>Quinta</th>
-              <th>Sexta</th>
-
-
+            <th>Horário</th>
+            <th>Segunda</th>
+            <th>Terça</th>
+            <th>Quarta</th>
+            <th>Quinta</th>
+            <th>Sexta</th>
           </thead>
-
           <tbody>
 
-          <% @lessons.each do |lesson| %>
+            <% @campus_schedules.each do |cs| %>
             <tr>
-              <td><%= lesson.campus_schedule.start.strftime("%H:%M") %> - <%= lesson.campus_schedule.end.strftime("%H:%M") %></td>
-                <td>
-              <% if (lesson.day == 'Segunda')
-                if (lesson.laboratory_id == nil) %>
-                <%= link_to(lesson.schoolroom.name, edit_admin_classroom_lesson_path(@classroom, lesson)) %>
-              <% end %>
-              <% if (lesson.schoolroom_id == nil) %>
-                <%= link_to(lesson.laboratory.name, edit_admin_classroom_lesson_path(@classroom, lesson)) %>
-              <% end %>
-              <% if (lesson.schoolroom_id != nil) && (lesson.laboratory_id != nil) %>
-                <%= link_to(lesson.schoolroom.name, edit_admin_classroom_lesson_path(@classroom, lesson)) %> -
-                <%= link_to(lesson.laboratory.name, edit_admin_classroom_lesson_path(@classroom, lesson)) %>
-              <% end %>
-              <% end %>
-            </td>
-                <td>
-              <% if (lesson.day == 'Terça')
-                if (lesson.laboratory_id == nil) %>
-                <%= link_to(lesson.schoolroom.name, edit_admin_classroom_lesson_path(@classroom, lesson)) %>
-              <% end %>
-              <% if (lesson.schoolroom_id == nil) %>
-                <%= link_to(lesson.laboratory.name, edit_admin_classroom_lesson_path(@classroom, lesson)) %>
-              <% end %>
-              <% if (lesson.schoolroom_id != nil) && (lesson.laboratory_id != nil) %>
-                <%= link_to(lesson.schoolroom.name, edit_admin_classroom_lesson_path(@classroom, lesson)) %> -
-                <%= link_to(lesson.laboratory.name, edit_admin_classroom_lesson_path(@classroom, lesson)) %>
-              <% end %>
-              <% end %>
-            </td>
-                <td>
-              <% if (lesson.day == 'Quarta')
-                if (lesson.laboratory_id == nil) %>
-                <%= link_to(lesson.schoolroom.name, edit_admin_classroom_lesson_path(@classroom, lesson)) %>
-              <% end %>
-              <% if (lesson.schoolroom_id == nil) %>
-                <%= link_to(lesson.laboratory.name, edit_admin_classroom_lesson_path(@classroom, lesson)) %>
-              <% end %>
-              <% if (lesson.schoolroom_id != nil) && (lesson.laboratory_id != nil) %>
-                <%= link_to(lesson.schoolroom.name, edit_admin_classroom_lesson_path(@classroom, lesson)) %> -
-                <%= link_to(lesson.laboratory.name, edit_admin_classroom_lesson_path(@classroom, lesson)) %>
-              <% end %>
-              <% end %>
-            </td>
-                <td>
-              <% if (lesson.day == 'Quinta')
-                if (lesson.laboratory_id == nil) %>
-                <%= link_to(lesson.schoolroom.name, edit_admin_classroom_lesson_path(@classroom, lesson)) %>
-              <% end %>
-              <% if (lesson.schoolroom_id == nil) %>
-                <%= link_to(lesson.laboratory.name, edit_admin_classroom_lesson_path(@classroom, lesson)) %>
-              <% end %>
-              <% if (lesson.schoolroom_id != nil) && (lesson.laboratory_id != nil) %>
-                <%= link_to(lesson.schoolroom.name, edit_admin_classroom_lesson_path(@classroom, lesson)) %> -
-                <%= link_to(lesson.laboratory.name, edit_admin_classroom_lesson_path(@classroom, lesson)) %>
-              <% end %>
-              <% end %>
-            </td>
-                <td>
-              <% if (lesson.day == 'Sexta')
-                if (lesson.laboratory_id == nil) %>
-                <%= link_to(lesson.schoolroom.name, edit_admin_classroom_lesson_path(@classroom, lesson)) %>
-              <% end %>
-              <% if (lesson.schoolroom_id == nil) %>
-                <%= link_to(lesson.laboratory.name, edit_admin_classroom_lesson_path(@classroom, lesson)) %>
-              <% end %>
-              <% if (lesson.schoolroom_id != nil) && (lesson.laboratory_id != nil) %>
-                <%= link_to(lesson.schoolroom.name, edit_admin_classroom_lesson_path(@classroom, lesson)) %> -
-                <%= link_to(lesson.laboratory.name, edit_admin_classroom_lesson_path(@classroom, lesson)) %>
-              <% end %>
-              <% end %>
-            </td>
-
+              <td><%= cs.start.strftime("%H:%M")%> ~ <%=cs.end.strftime("%H:%M") %></td>
+              <td>
+                <%=
+                mon = @monday.find_by campus_schedule: cs
+                unless mon.nil?
+                  mon.laboratory.nil? ? mon.schoolroom.name : mon.laboratory.name
+                else
+                  "-"
+                end
+                %>
+              </td>
+              <td>
+                <%=
+                tue = @tuesday.find_by campus_schedule: cs
+                unless tue.nil?
+                  tue.laboratory.nil? ? tue.schoolroom.name : tue.laboratory.name
+                else
+                  "-"
+                end
+                %>            
+              </td>
+              <td>
+                <%=
+                  wed = @wednesday.find_by campus_schedule: cs
+                  unless wed.nil?
+                    wed.laboratory.nil? ? wed.schoolroom.name : wed.laboratory.name
+                  else
+                    "-"
+                  end
+                %>
+              </td>
+              <td>
+                <%=
+                thu = @thursday.find_by campus_schedule: cs
+                unless thu.nil?
+                  thu.laboratory.nil? ? thu.schoolroom.name : thu.laboratory.name
+                else
+                  "-"
+                end
+                %>
+              </td>
+              <td>
+                <%=
+                fri = @friday.find_by campus_schedule: cs
+                unless fri.nil?
+                  fri.laboratory.nil? ? fri.schoolroom.name : fri.laboratory.name
+                else
+                  "-"
+                end
+                %>
+              </td>
             </tr>
             <% end %>
-
-
-
           </tbody>
 
         </table>
-
-
-
-
       </div>
     </div>
   </div>
