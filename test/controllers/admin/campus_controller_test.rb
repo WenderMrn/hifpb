@@ -1,6 +1,11 @@
 require 'test_helper'
 
 class Admin::CampusControllerTest < ActionDispatch::IntegrationTest
+
+  setup do
+    sign_as_admin
+  end
+
   test 'should import campus from suap' do
     get importar_admin_campus_index_url
     assert_redirected_to admin_campus_index_url
@@ -20,6 +25,11 @@ class Admin::CampusControllerTest < ActionDispatch::IntegrationTest
   test 'should have a success status' do
     get admin_campus_index_url
     assert_response :success
+  end
+
+  test "should show all campi" do
+    get admin_campus_index_url
+    assert Campus.all, assigns: @campus
   end
 
 end

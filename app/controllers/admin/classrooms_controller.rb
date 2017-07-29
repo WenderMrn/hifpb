@@ -1,11 +1,21 @@
 class Admin::ClassroomsController < Admin::AdminController
   before_action :set_classroom, only: [:show, :edit, :update, :destroy]
+  before_action :set_authorization, only: [:index, :show, :new, :edit, :create, :update, :destroy]
 
   def index
-    @classrooms = Classroom.all
+    @classrooms = policy_scope(Classroom)
   end
 
   def show
+    if @classrooms.exclude?(@classroom)
+      redirect_to admin_classrooms_path
+    else
+      if params[:course_id]
+        @classrooms = policy_scope(Classroom.where(course_id: params[:course_id]))
+      else
+        @classrooms = policy_scope(Classroom)
+      end
+    end
   end
 
   def new
@@ -50,11 +60,16 @@ class Admin::ClassroomsController < Admin::AdminController
   end
 
   private
-    def set_classroom
-      @classroom = Classroom.find(params[:id])
-    end
+  def set_authorization
+    authorize Classroom  
+  end
+  
+  def set_classroom
+    @classrooms = policy_scope(Classroom)
+    @classroom = Classroom.find(params[:id])
+  end
 
-    def classroom_params
-      params.require(:classroom).permit(:name, :code, :course_id, :course_subject_id, :teacher_id, :semester, :observations)
-    end
+  def classroom_params
+    params.require(:classroom).permit(:name, :code, :course_id, :course_subject_id, :teacher_id, :semester_id)
+  end
 end
