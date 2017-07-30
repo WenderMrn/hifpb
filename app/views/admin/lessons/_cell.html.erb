@@ -2,8 +2,8 @@
 if day.nil?
   "-"
 else
-  if day.schoolroom.nil? and day.laboratory.nil?
-    @display = day.laboratory.name +" ~ "+ day.laboratory.name
+  unless day.schoolroom.nil? or day.laboratory.nil?
+    @display = day.laboratory.name.to_s + " ~ " + day.laboratory.name.to_s
   else
     @display = day.schoolroom.nil? ? day.laboratory.name : day.schoolroom.name
   end

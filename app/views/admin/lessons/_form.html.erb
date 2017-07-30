@@ -23,28 +23,28 @@
 
         <div class="form-group">
           <%= form.label :name, "Turma" %>
-          <%= form.text_field "classroom_id", :value => @classroom.id,:readonly => true, id: :classroom_name, class: "form-control" %>
+          <%= form.text_field "classroom_id", :value => @classroom.id, :readonly => true, id: :classroom_name, class: "form-control" %>
         </div>
 
         <div class="form-group">
           <%= form.label :day, "Dia" %>
-          <%= form.select("day", options_for_select([['Segunda','Segunda'], ['Terça','Terça'], ['Quarta','Quarta'], ['Quinta','Quinta'], ['Sexta','Sexta']]), class: "selectpicker", data: {'live-search' => 'false', width: "auto"}) %>
+          <% @weekdays = [['Segunda','Segunda'], ['Terça','Terça'], ['Quarta','Quarta'], ['Quinta','Quinta'], ['Sexta','Sexta']] %>
+          <%= form.select("day", @weekdays.collect { |w| [w[0], w[1]] }, class: "selectpicker", data: {'live-search' => 'false', width: "auto"}) %>
         </div>
 
         <div class="form-group">
           <%= form.label :schoolroom_id, "Sala" %>
-          <%= form.select("schoolroom_id", options_from_collection_for_select(Schoolroom.all, 'id', 'name'), {:include_blank => true}, class: "selectpicker", data: { width: "auto"}) %>
+          <%= form.select(:schoolroom_id, Schoolroom.all.collect {|s| [s.name, s.id]}, {}, class: "selectpicker", data: {'live-search' => 'true', width: "auto"}) %>
         </div>
 
         <div class="form-group">
           <%= form.label :laboratory_id, "Laboratório" %>
-          <%= form.select("laboratory_id", options_from_collection_for_select(Laboratory.all, 'id', 'name'), {:include_blank => true}, class: "selectpicker", data: { width: "auto"}) %>
+          <%= form.select(:laboratory_id, Laboratory.all.collect {|l| [l.name, l.id]}, {}, class: "selectpicker", data: {'live-search' => 'true', width: "auto"}) %>
         </div>
 
         <div class="form-group">
           <%= form.label :campus_schedule_id, "Horários" %>
-
-          <%= form.select("campus_schedule_id", options_from_collection_for_select(CampusSchedule.all, 'id', 'to_s'), {}, class: "selectpicker", data: {'live-search' => 'false', width: "auto"}) %>
+          <%= form.select(:campus_schedule_id, CampusSchedule.all.collect {|cs| [cs.to_s, cs.id]}, {}, class: "selectpicker", data: {'live-search' => 'true', width: "auto"}) %>
         </div>
 
         <div class="form-group">
