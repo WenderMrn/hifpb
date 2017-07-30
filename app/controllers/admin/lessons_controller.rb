@@ -29,22 +29,20 @@ class Admin::LessonsController < Admin::AdminController
       if @lesson.save
         format.html { redirect_to admin_classroom_lessons_path, notice: 'Aula criada com sucesso.' }
       else
-        format.html { flash[:danger] = @lesson.errors.full_messages.to_sentence
-         render :new }
-       end
-     end
-   end
+        format.html { render :new }
+      end
+    end
+  end
 
   def update
     respond_to do |format|
-      if @lesson.update(lesson_params)       
+      if @lesson.update(lesson_params)
         format.html { redirect_to admin_classroom_lessons_path, notice: 'Aula atualizada com sucesso' }
       else
-        format.html {  flash[:danger] = @lesson.errors.full_messages.to_sentence
-         render :edit }
-       end
-     end
-   end
+        format.html { render :edit }
+      end
+    end
+  end
 
   def destroy
     @lesson.destroy
