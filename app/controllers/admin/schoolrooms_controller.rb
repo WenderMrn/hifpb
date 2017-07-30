@@ -51,6 +51,6 @@ class Admin::SchoolroomsController < Admin::AdminController
     end
 
     def schoolroom_params
-      params.require(:schoolroom).permit(:maximum_capacity, :amount_resources, :status, :name, :initials)
+      params.require(:schoolroom).permit(:maximum_capacity, :amount_resources, :status, :name, :initials, :campus_id)
     end
 end

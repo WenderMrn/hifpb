@@ -42,8 +42,6 @@ class Admin::LaboratoriesController < Admin::AdminController
     redirect_to admin_laboratories_path
   end
 
-
-
   private
     def set_lab
       @laboratory = Laboratory.find(params[:id])
@@ -54,6 +52,6 @@ class Admin::LaboratoriesController < Admin::AdminController
     end
 
     def laboratory_params
-      params.require(:laboratory).permit(:maximum_capacity, :amount_resources, :status, :name, :initials)
+      params.require(:laboratory).permit(:maximum_capacity, :amount_resources, :status, :name, :initials, :campus_id)
     end
 end
