@@ -1,5 +1,3 @@
-<h1>Aulas da turma: <%= @classroom.name %></h1>
-<h4>Clique nas aulas para editar</h4>
 <div class="row">
   <div class="col-lg-12">
     <div class="panel panel-default">
@@ -30,54 +28,19 @@
             <tr>
               <td><%= cs.start.strftime("%H:%M")%> ~ <%=cs.end.strftime("%H:%M") %></td>
               <td>
-                <%=
-                mon = @monday.find_by campus_schedule: cs
-                unless mon.nil?
-                  mon.laboratory.nil? ? mon.schoolroom.name : mon.laboratory.name
-                else
-                  "-"
-                end
-                %>
+                <%= render 'cell', day: @monday.find_by(campus_schedule: cs) %>
               </td>
               <td>
-                <%=
-                tue = @tuesday.find_by campus_schedule: cs
-                unless tue.nil?
-                  tue.laboratory.nil? ? tue.schoolroom.name : tue.laboratory.name
-                else
-                  "-"
-                end
-                %>            
+                <%= render 'cell', day: @tuesday.find_by(campus_schedule: cs) %>
               </td>
               <td>
-                <%=
-                  wed = @wednesday.find_by campus_schedule: cs
-                  unless wed.nil?
-                    wed.laboratory.nil? ? wed.schoolroom.name : wed.laboratory.name
-                  else
-                    "-"
-                  end
-                %>
+                <%= render 'cell', day: @wednesday.find_by(campus_schedule: cs) %>
               </td>
               <td>
-                <%=
-                thu = @thursday.find_by campus_schedule: cs
-                unless thu.nil?
-                  thu.laboratory.nil? ? thu.schoolroom.name : thu.laboratory.name
-                else
-                  "-"
-                end
-                %>
+                <%= render 'cell', day: @thursday.find_by(campus_schedule: cs) %>
               </td>
               <td>
-                <%=
-                fri = @friday.find_by campus_schedule: cs
-                unless fri.nil?
-                  fri.laboratory.nil? ? fri.schoolroom.name : fri.laboratory.name
-                else
-                  "-"
-                end
-                %>
+                <%= render 'cell', day: @friday.find_by(campus_schedule: cs) %>
               </td>
             </tr>
             <% end %>

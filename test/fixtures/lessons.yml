@@ -10,4 +10,11 @@ two:
   laboratory: two
   schoolroom: two
   classroom: one
-  campus_schedule: two
+  campus_schedule: one
+
+three:
+  day: Quarta
+  laboratory: two
+  schoolroom: two
+  classroom: one
+  campus_schedule: one

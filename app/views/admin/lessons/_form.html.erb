@@ -13,40 +13,38 @@
         <div class="row">
           <div class="col-md-8">
             <svg class="glyph stroked notepad "><use xlink:href="#stroked-notepad"/></svg>
-              para turma : <%= @classroom.name %>
+            Turma <%= @classroom.name %>
 
           </div>
         </div>
       </div>
       <div class="panel-body">
-         <%= form_for([:admin, @classroom, lesson]) do |form| %>
+        <%= form_for([:admin, @classroom, lesson]) do |form| %>
 
-         <div class="form-group">
-           <%= form.label :name, "Turma" %>
-           <%= form.text_field "classroom_id",:value => @classroom.id,:readonly => true, id: :classroom_name, class: "form-control" %>
-         </div>
+        <div class="form-group">
+          <%= form.label :name, "Turma" %>
+          <%= form.text_field "classroom_id", :value => @classroom.id,:readonly => true, id: :classroom_name, class: "form-control" %>
+        </div>
 
         <div class="form-group">
           <%= form.label :day, "Dia" %>
-            <%= form.select("day", options_for_select([['Segunda','Segunda'],['Terça','Terça'],['Quarta','Quarta'],['Quinta','Quinta'],['Sexta','Sexta']]),class: "selectpicker", data: {'live-search' => 'false', width: "auto"}) %>
+          <%= form.select("day", options_for_select([['Segunda','Segunda'], ['Terça','Terça'], ['Quarta','Quarta'], ['Quinta','Quinta'], ['Sexta','Sexta']]), class: "selectpicker", data: {'live-search' => 'false', width: "auto"}) %>
         </div>
 
         <div class="form-group">
           <%= form.label :schoolroom_id, "Sala" %>
-          <%= form.select("schoolroom_id", options_from_collection_for_select(Schoolroom.all, 'id', 'name'), {:include_blank => true},class: "selectpicker", data: {'live-search' => 'false', width: "auto"}) %>
+          <%= form.select("schoolroom_id", options_from_collection_for_select(Schoolroom.all, 'id', 'name'), {:include_blank => true}, class: "selectpicker", data: { width: "auto"}) %>
         </div>
-
-
 
         <div class="form-group">
           <%= form.label :laboratory_id, "Laboratório" %>
-          <%= form.select("laboratory_id", options_from_collection_for_select(Laboratory.all, 'id', 'name'), {:include_blank => true}, class: "selectpicker", data: {'live-search' => 'false', width: "auto"}) %>
+          <%= form.select("laboratory_id", options_from_collection_for_select(Laboratory.all, 'id', 'name'), {:include_blank => true}, class: "selectpicker", data: { width: "auto"}) %>
         </div>
 
         <div class="form-group">
           <%= form.label :campus_schedule_id, "Horários" %>
 
-          <%= form.select("campus_schedule_id", options_from_collection_for_select(CampusSchedule.all, 'id', 'start'), {}, class: "selectpicker", data: {'live-search' => 'false', width: "auto"}) %>
+          <%= form.select("campus_schedule_id", options_from_collection_for_select(CampusSchedule.all, 'id', 'to_s'), {}, class: "selectpicker", data: {'live-search' => 'false', width: "auto"}) %>
         </div>
 
         <div class="form-group">
@@ -59,7 +57,7 @@
 </div>
 
 <script type="text/javascript">
-$('#xclassroom_course_id').selectpicker({
-  size: 100
-});
+  $('#xclassroom_course_id').selectpicker({
+    size: 100
+  });
 </script>
