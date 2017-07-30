@@ -1,5 +1,7 @@
 class Admin::LessonsController < Admin::AdminController
   before_action :set_lesson, only: [:edit, :update, :destroy]
+  before_action :set_authorization, only: [:index, :create, :update, :destroy]
+  before_action :set_days, except: [:index]
 
   def index
     @classroom = Classroom.find(params[:classroom_id])
@@ -53,6 +55,14 @@ class Admin::LessonsController < Admin::AdminController
   end
 
   private
+  def set_authorization
+    authorize Lesson
+  end
+
+  def set_days
+    @weekdays = ['Segunda','Terça', 'Quarta', 'Quinta', 'Sexta']
+  end
+
   def set_lesson
     @lesson = Lesson.find(params[:id])
     @classroom = Classroom.find(params[:classroom_id])
