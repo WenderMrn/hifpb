@@ -13,10 +13,12 @@ class Admin::SchoolroomsController < Admin::AdminController
 
   def create
     @schoolroom = Schoolroom.new(schoolroom_params)
-    if @schoolroom.save
-      redirect_to admin_schoolrooms_path
-    else
-      render 'new'
+    respond_to do |format|
+      if @schoolroom.save
+        format.html { redirect_to admin_schoolrooms_path, notice: 'Sala criada com sucesso.' }
+      else
+        format.html { render :new }
+      end
     end
   end
 
@@ -29,10 +31,12 @@ class Admin::SchoolroomsController < Admin::AdminController
   end
 
   def update
-    if @schoolroom.update(schoolroom_params)
-      redirect_to admin_schoolrooms_path
-    else
-      render 'edit'
+    respond_to do |format|
+      if @schoolroom.update(schoolroom_params)
+        format.html { redirect_to admin_schoolrooms_path, notice: 'Sala atualizada com sucesso.' }
+      else
+        format.html { render :edit }
+      end
     end
   end
 

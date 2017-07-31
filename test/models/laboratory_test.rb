@@ -1,10 +1,6 @@
 require 'test_helper'
 
 class LaboratoryTest < ActiveSupport::TestCase
-  test 'should be saved' do
-    laboratory = Laboratory.new({name: "Lab INFO 05", initials: "Info-05", maximum_capacity: "20", amount_resources: "25", campus_id: "3", status: "true"})
-    assert laboratory.save
-  end
 
   test 'should be not saved without args' do
     laboratory = Laboratory.new

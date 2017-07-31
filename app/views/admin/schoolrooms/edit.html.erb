@@ -7,7 +7,7 @@
         <div class="panel-heading"><svg class="glyph stroked pencil"><use xlink:href="#stroked-pencil"></use></svg>Sala <%= @schoolroom.initials%></div>
         <div class="panel-body">
           <div class="col-md-12">
-            <%= form_for :schoolroom, url: admin_schoolrooms_path do |f| %>
+            <%= form_for :schoolroom, url: admin_schoolroom_path, method: :patch do |f| %>
             <div class="form-group ">
               <%= f.label :name, "Nome",class: "col-sm-2 control-label"%>
               <div class="col-sm-4">

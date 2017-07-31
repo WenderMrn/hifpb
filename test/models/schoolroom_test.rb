@@ -1,11 +1,6 @@
 require 'test_helper'
 
 class SchoolroomTest < ActiveSupport::TestCase
-  test 'should be saved' do
-    # skip
-    schoolroom = Schoolroom.new({name: "Lab INFO 05", initials: "Info-05", maximum_capacity: "20", amount_resources: "25", campus_id: "3", status: "true"})
-    assert schoolroom.save
-  end
 
   test 'should be not saved without args' do
     # skip

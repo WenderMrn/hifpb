@@ -15,3 +15,11 @@ two:
   name: Sala-02
   initials: S-02
   campus: campus
+
+three:
+  maximum_capacity: 30
+  amount_resources: 35
+  status: false
+  name: Sala-03
+  initials: S-03
+  campus: campus
