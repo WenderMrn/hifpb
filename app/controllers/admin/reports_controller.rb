@@ -1,5 +1,5 @@
 class Admin::ReportsController < Admin::AdminController
-    def index
+  def index
 
   end
 
