@@ -3,7 +3,11 @@ class Admin::ClassroomsController < Admin::AdminController
   before_action :set_authorization, only: [:index, :show, :new, :edit, :create, :update, :destroy]
 
   def index
-    @classrooms = policy_scope(Classroom)
+    if params[:course_id]
+      @classrooms = policy_scope(Classroom).where(course_id: params[:course_id])
+    else
+      @classrooms = policy_scope(Classroom).order(:course_id)
+    end
   end
 
   def show
@@ -42,7 +46,7 @@ class Admin::ClassroomsController < Admin::AdminController
   def update
     respond_to do |format|
       if @classroom.update(classroom_params)
-        format.html { redirect_to admin_classroom_path(@classroom), notice: 'Turma criada com sucesso' }
+        format.html { redirect_to admin_classroom_path(@classroom), notice: 'Turma atualizada com sucesso' }
         format.json { render :show, status: :ok, location: @classroom }
       else
         format.html { render :edit }
@@ -61,9 +65,9 @@ class Admin::ClassroomsController < Admin::AdminController
 
   private
   def set_authorization
-    authorize Classroom  
+    authorize Classroom
   end
-  
+
   def set_classroom
     @classrooms = policy_scope(Classroom)
     @classroom = Classroom.find(params[:id])
