@@ -169,3 +169,11 @@ $default-green: #00420c;
   border: 1px solid #eee;
   border-bottom: 0;
 }
+
+
+.panel {
+  .list-group-item a {
+    text-transform: uppercase;
+  }
+}
+
