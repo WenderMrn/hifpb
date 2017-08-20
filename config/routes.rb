@@ -9,6 +9,8 @@ Rails.application.routes.draw do
     get :course, to: 'course#show', path: :curso
     match :laboratories, to: 'laboratory#index', via: [:get, :post], path: :laboratorios
     get :laboratory, to: 'laboratory#show', path: :laboratorio
+    match :schoolrooms, to: 'schoolroom#index', via: [:get, :post], path: :salas
+    get :schoolroom, to: 'schoolroom#show', path: :sala
   end
 
   get  '/login',  to: 'sessions#new'
