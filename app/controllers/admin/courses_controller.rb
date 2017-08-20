@@ -45,7 +45,6 @@ class Admin::CoursesController < Admin::AdminController
         db_course.code = course['codigo'].to_i
         db_course.campus_id = course_params[:id_campus].to_i
         db_course.save
-        puts course['descricao'].downcase.split("em")[0]
       end
       flash[:success] = "Foram importados #{response.length} cursos com sucesso"
     else

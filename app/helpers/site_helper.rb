@@ -14,6 +14,6 @@ module SiteHelper
   end
 
   def current_campi
-    Campus.find(session[:campus_id] || 3)
+    Campus.find_by(id: session[:campus_id]) || Campus.find_by(id: 3) || Campus.first
   end
 end
