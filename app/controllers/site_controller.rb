@@ -3,8 +3,6 @@ class SiteController < ApplicationController
   before_action :set_semester, :set_days, :set_campus
 
   def index
-    @lessons = Lesson.by_semester(6)
-    @schedules = CampusSchedule.where(campus: Schoolroom.first.campus).order(:shift)
   end
 
   def set_campi
