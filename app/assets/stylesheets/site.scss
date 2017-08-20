@@ -18,6 +18,11 @@ $default-green: #00420c;
         background: #e7f9ed;
         // color: #fff;
       }
+
+      &.active {
+        color: #fff;
+        background: $default-green;
+      }
     }
   }
 }
