@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   namespace :schedule, path: 'horarios' do
     match :courses, to: 'course#index', via: [:get, :post], path: :cursos
     get :course, to: 'course#show', path: :curso
+    match :laboratories, to: 'laboratory#index', via: [:get, :post], path: :laboratorios
+    get :laboratory, to: 'laboratory#show', path: :laboratorio
   end
 
   get  '/login',  to: 'sessions#new'
