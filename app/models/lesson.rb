@@ -45,4 +45,8 @@ class Lesson < ApplicationRecord
     joins(:classroom).where(classrooms: {teacher: teacher}).order(day: :asc)
   }
 
+  scope :by_campus, -> (campus) {
+    joins(:classroom => :course).where(classrooms: {courses: {campus: campus}})
+  }
+
 end
