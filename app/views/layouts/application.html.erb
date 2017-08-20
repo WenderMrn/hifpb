@@ -11,6 +11,19 @@
   </head>
 
   <body class="tema-verde">
+    <% if @campus.any? %>
+    <div class="campus-bar">
+      <div class="container">
+        <ul class="campus-list">
+        <%- @campus.each do |campus|%>
+          <li class="campus" title="<%= campus.description %>">
+            <%= link_to(get_sigla(campus), set_campi_path(campus: campus.id, next: request.path)) %>
+          </li>
+        <% end %>
+      </ul>
+      </div>
+    </div>
+    <% end %>
     <div class="header">
       <div class="container">
         <div class="row">
@@ -31,6 +44,7 @@
                 <li>
                   Semestre <%= @current_semester %>
                 </li>
+                <li><%= current_campi.description %></li>
               </ul>
             </div>
           </div>
@@ -39,22 +53,6 @@
     </div>
     <div class="container main">
       <div class="row">
-        <div class="actions clearfix">
-          <div class="row">
-          <div class="col-md-3">
-            <%= link_to("Cursos", root_path, class: "btn btn-default btn-block btn-lg") %>
-          </div>
-          <div class="col-md-3">
-            <%= link_to("Laboratórios", root_path, class: "btn btn-default btn-block btn-lg") %>
-          </div>
-          <div class="col-md-3">
-            <%= link_to("Salas", root_path, class: "btn btn-default btn-block btn-lg") %>
-          </div>
-          <div class="col-md-3">
-            <%= link_to("Professores", root_path, class: "btn btn-default btn-block btn-lg") %>
-          </div>
-          </div>
-        </div>
         <%= yield %>
       </div>
     </div>

@@ -13,7 +13,7 @@
         <% days.each_with_index do |day, i| %>
           <% if not lessons.find_by(campus_schedule: cs, day: day).nil? %>
             <div class="course <%= I18n.transliterate(lessons.find_by(campus_schedule: cs, day: day).day) %>">
-              <%= lessons.find_by(campus_schedule: cs, day: day) %>
+              <%= format_lesson_info(lessons.find_by(campus_schedule: cs, day: day)) %>
             </div>
             <% else %>
               <div class="course <%= I18n.transliterate(day) %>"></div>

@@ -28,4 +28,8 @@ class Lesson < ApplicationRecord
   scope :by_semester, -> (semester) {
     joins(:classroom).joins(classroom: :course_subject).where(classrooms: {course_subjects: {semester: semester}}).order(day: :asc)
   }
+
+  scope :by_course, -> (course) {
+    where(classrooms: {course_subjects: {course: course}})
+  }
 end
