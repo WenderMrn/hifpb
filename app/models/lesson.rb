@@ -32,4 +32,17 @@ class Lesson < ApplicationRecord
   scope :by_course, -> (course) {
     where(classrooms: {course_subjects: {course: course}})
   }
+
+  scope :by_laboratory, -> (lab) {
+    where(laboratory: lab).order(day: :asc)
+  }
+
+  scope :by_schoolroom, -> (room) {
+    where(schoolroom: room).order(day: :asc)
+  }
+
+  scope :by_teacher, -> (teacher) {
+    joins(:classroom).where(classrooms: {teacher: teacher}).order(day: :asc)
+  }
+
 end
